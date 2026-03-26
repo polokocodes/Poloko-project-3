@@ -1,7 +1,7 @@
 # Poloko-project-3
 # 🦠 COVID-19 Global Data Analysis & Forecasting
 
-A comprehensive end-to-end data analysis and time series forecasting project built on the Johns Hopkins University CSSE COVID-19 dataset. This project covers data ingestion, exploratory analysis, visualisation, stationarity testing, and ARIMA-based forecasting — producing actionable insights on the global trajectory of the pandemic.
+A comprehensive end-to-end data analysis and time series forecasting project built on the Johns Hopkins University CSSE COVID-19 dataset. This project covers data ingestion, exploratory analysis, visualisation, stationarity testing, and ARIMA-based forecasting producing actionable insights on the global trajectory of the pandemic.
 
 
 ## 📦 Dependencies
@@ -22,7 +22,7 @@ Data is sourced directly from the **Johns Hopkins University CSSE GitHub reposit
 | `time_series_covid19_deaths_global.csv` | Cumulative deaths by country |
 | `time_series_covid19_recovered_global.csv` | Cumulative recoveries by country |
 
-The `Province/State` column is dropped from all three datasets to consolidate records at the country level, and a preliminary EDA is performed — inspecting shape, column structure, data types, and missing values — before any transformations are applied.
+The `Province/State` column is dropped from all three datasets to consolidate records at the country level, and a preliminary EDA is performed inspecting shape, column structure, data types, and missing values before any transformations are applied.
 
 ---
 
