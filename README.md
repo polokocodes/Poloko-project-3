@@ -49,7 +49,7 @@ The top 5 countries by confirmed cases and deaths are plotted as time series lin
 A custom `calc_slope()` function computes the average daily growth rate of new confirmed cases per country using `np.polyfit()`. The top 15 countries by this slope are visualised in a bar chart, identifying nations with the steepest accelerations in case growth.
 
 ### Peak 30-Day Fatality Window
-A rolling 30-day window analysis is performed across the top 10 countries by total confirmed cases, summing new deaths within each window to isolate each country's single deadliest 30-day period — plotted in firebrick red for stark visual impact.
+A rolling 30-day window analysis is performed across the top 10 countries by total confirmed cases, summing new deaths within each window to isolate each country's single deadliest 30-day period plotted in firebrick red for stark visual impact.
 
 ---
 
@@ -57,7 +57,7 @@ A rolling 30-day window analysis is performed across the top 10 countries by tot
 
 A 14-day rolling mean and standard deviation are computed on the daily new confirmed cases for a selected country (default: `US`). The raw series is first cleaned using `.clip(lower=0)` and `.fillna(0)` to remove negative corrections and fill gaps. All three series — raw daily cases, the 14-day mean, and the 14-day standard deviation — are plotted on a single chart, cutting through short-term noise to reveal the broader wave patterns of the pandemic.
 
-> The 14-day window aligns with the widely used epidemiological reporting standard adopted globally during the pandemic.
+The 14-day window aligns with the widely used epidemiological reporting standard adopted globally during the pandemic.
 
 ---
 
@@ -70,7 +70,7 @@ A reusable `adf_test()` function is defined to wrap `statsmodels`' `adfuller()` 
 - **Raw series** — likely non-stationary due to visible trends and waves.
 - **First-differenced series** — computed using `.diff().dropna()` to remove trends and stabilise the mean, typically yielding a stationary result suitable for forecasting.
 
-> Forecasting models trained on non-stationary data tend to produce unreliable predictions — making this step an essential part of rigorous time series analysis.
+ Forecasting models trained on non-stationary data tend to produce unreliable predictions  making this step an essential part of rigorous time series analysis.
 
 ---
 
@@ -89,13 +89,13 @@ Both plots are applied to the stationary differenced series, as ACF and PACF dia
 
 ## ✂️ Step 6 — Train/Test Split
 
-The smoothed series (14-day rolling mean) is split chronologically at the **80th percentile** of its length — 80% for training and 20% for testing. The split is performed sequentially to preserve the temporal order of observations and prevent data leakage from future values into the training period. Both sets are visualised on a single chart to confirm the integrity of the split before model fitting.
+The smoothed series (14-day rolling mean) is split chronologically at the **80th percentile** of its length 80% for training and 20% for testing. The split is performed sequentially to preserve the temporal order of observations and prevent data leakage from future values into the training period. Both sets are visualised on a single chart to confirm the integrity of the split before model fitting.
 
 ---
 
 ## 🤖 Step 7 — ARIMA Model Fitting & Forecasting
 
-The ARIMA model is fitted with order `(p=2, d=1, q=2)` — derived from the ACF and PACF diagnostics — on the smoothed training set. A full statistical summary is printed via `model_fit.summary()`. Forecasts are generated for the length of the test set using `get_forecast()`, with predicted means and confidence intervals extracted and plotted alongside the actual test values.
+The ARIMA model is fitted with order `(p=2, d=1, q=2)` derived from the ACF and PACF diagnostics — on the smoothed training set. A full statistical summary is printed via `model_fit.summary()`. Forecasts are generated for the length of the test set using `get_forecast()`, with predicted means and confidence intervals extracted and plotted alongside the actual test values.
 
 ### Evaluation Metrics
 
@@ -106,7 +106,7 @@ The ARIMA model is fitted with order `(p=2, d=1, q=2)` — derived from the ACF 
 
 The average confidence interval bounds are also reported, quantifying the range of uncertainty around each forecast.
 
-> The `(p=2, d=1, q=2)` order is a principled starting point. For more rigorous optimisation, consider using `auto_arima` from the `pmdarima` library.
+ The `(p=2, d=1, q=2)` order is a principled starting point. For more rigorous optimisation, consider using `auto_arima` from the `pmdarima` library.
 
 ---
 
@@ -120,7 +120,7 @@ A final summary block consolidates the most significant findings from the entire
 - **Fastest Growing Region** — The country with the steepest average daily case growth slope.
 - **ARIMA Model Performance** — MAPE and RMSE for the selected country's forecast.
 
-> This summary block is modular — swapping the `COUNTRY` variable or updating the dataset will automatically refresh all printed insights without any code changes.
+This summary block is modular swapping the `COUNTRY` variable or updating the dataset will automatically refresh all printed insights without any code changes.
 
 ---
 
